@@ -16,9 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import WelcomePageView, CalendarPageView, DashBoardPageView, EditPageView, LoginPageView, MealPageView, ProfilePageView, RecipePageView, StatisPageView, TimerPageView
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('page.urls'))
+    path('', WelcomePageView.as_view()),
+    path('login/', LoginPageView.as_view()),
+    path('home/', DashBoardPageView.as_view()),
+    path('calendar/', CalendarPageView.as_view()),
+    path('statis/', StatisPageView.as_view()),
+    path('timer/', TimerPageView.as_view()),
+    path('calendar/meal', MealPageView.as_view()),
+    path('calendar/meal/recipe', RecipePageView.as_view()),
+    path('profile/', ProfilePageView.as_view()),
+    path('edit/', EditPageView.as_view()),
 ]
