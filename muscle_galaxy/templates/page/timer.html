@@ -1,46 +1,38 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Timer MuscleGalaxy!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Calendar MuscleGalaxy!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <h1>This is Timer Page.</h1>
-        <h1>This page is timer page, so you can use timer for your workout.</h1>
-        <h1><a href="/home">Dashboard</a></h1>
-        <script src="" async defer></script>
-        <script src="" async defer></script>
-    </body>
-</html>
-        <script src="" async defer></script>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>Timer MuscleGalaxy!</title>
+    <style>
+        /* ここにCSSを配置 */
+        .timer-circle {
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+        .timer-controls { text-align: center; margin-top: 20px; }
+        .btn-red { background-color: red; color: white; }
+    </style>
+</head>
+<body>
+    <h1>筋トレタイマー</h1>
+
+    <div class="timer-wrapper">
+        <div class="timer-circle">
+            <h1 id="timer-display">00:00</h1>
+        </div>
+        
+        <div class="timer-controls">
+            <button id="start-stop-btn">一時停止/再開</button>
+            <button id="skip-lap-btn">スキップ/ラップ</button>
+            <button id="finish-btn" class="btn-red">終了</button>
+        </div>
+    </div>
+
+    <script src="/static/js/timer.js"></script>
+</body>
 </html>

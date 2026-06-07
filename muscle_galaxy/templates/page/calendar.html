@@ -1,26 +1,37 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Calendar MuscleGalaxy!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        
+        <style>
+            body { background-color: #f9f9f9; font-family: sans-serif; }
+            .calendar-body { 
+                background: white; 
+                padding: 20px; 
+                border-radius: 20px; 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                max-width: 600px;
+                margin: 20px auto;
+            }
+            .calendar-body table { width: 100%; border-collapse: collapse; }
+            .calendar-body td { 
+                padding: 20px; 
+                text-align: center; 
+                border: 1px solid #f0f0f0; 
+                border-radius: 10px;
+            }
+            .calendar-body th { padding: 10px; color: #888; }
+        </style>
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <h1>This is Calendar Page.</h1>
-        <h1>This page is calendar page, so you can abstruct menus.</h1>
-        <h1><a href="/calendar/meal">Meal</a></h1>
-        <h1><a href="/home">Dashboard</a></h1>
-        <script src="" async defer></script>
-        <script src="" async defer></script>
+        <h1>筋トレカレンダー</h1>
+        
+        <div class="calendar-body">
+            {{ calendar_html|safe }}
+        </div>
+
+        <br>
+        <a href="/calendar/meal">Meal</a> | <a href="/home">Dashboard</a>
     </body>
 </html>
