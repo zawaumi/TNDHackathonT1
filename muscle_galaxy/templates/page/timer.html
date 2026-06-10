@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Timer MuscleGalaxy!</title>
-    <style>
-        /* ここにCSSを配置 */
-        .timer-circle {
-            width: 300px; height: 300px;
-            border-radius: 50%;
-            background-color: #e0e0e0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px auto;
-        }
-        .timer-controls { text-align: center; margin-top: 20px; }
-        .btn-red { background-color: red; color: white; }
-    </style>
+<title>Workout Timer</title>
+
+<style>
+body{
+    background:#121212;
+    color:white;
+    text-align:center;
+    padding-top:100px;
+    font-family:Arial;
+}
+
+.timer{
+    font-size:80px;
+    color:#00ff99;
+}
+
+button{
+    padding:15px 30px;
+    margin:10px;
+}
+</style>
 </head>
+
 <body>
-    <h1>筋トレタイマー</h1>
 
-    <div class="timer-wrapper">
-        <div class="timer-circle">
-            <h1 id="timer-display">00:00</h1>
-        </div>
-        
-        <div class="timer-controls">
-            <button id="start-stop-btn">一時停止/再開</button>
-            <button id="skip-lap-btn">スキップ/ラップ</button>
-            <button id="finish-btn" class="btn-red">終了</button>
-        </div>
-    </div>
+<h1>⏱ Workout Timer</h1>
 
-    <script src="/static/js/timer.js"></script>
+<div class="timer" id="timer">
+60
+</div>
+
+<button onclick="startTimer()">Start</button>
+
+<script>
+let time = 60;
+
+function startTimer(){
+    const interval = setInterval(()=>{
+        time--;
+
+        document.getElementById("timer").innerHTML=time;
+
+        if(time<=0){
+            clearInterval(interval);
+        }
+
+    },1000);
+}
+</script>
+
 </body>
 </html>
