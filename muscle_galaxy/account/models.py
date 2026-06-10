@@ -4,7 +4,6 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
-    age = models.CharField('年齢', null=True, max_length=3)
     height = models.FloatField('身長(cm)', null=True, blank=True)
     weight = models.FloatField('体重(kg)', null=True, blank=True)
     gender = models.CharField(
