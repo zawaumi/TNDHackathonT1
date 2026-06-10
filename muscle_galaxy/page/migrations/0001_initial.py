@@ -282,4 +282,16 @@ class Migration(migrations.Migration):
                 'unique_together': {('user', 'date')},
             },
         ),
+        migrations.CreateModel(
+            name='TrainingLog',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('date', models.DateField()),
+                ('workout_name', models.CharField(max_length=100)),
+                ('body_part', models.CharField(max_length=50)),
+                ('weight', models.FloatField()),
+                ('reps', models.IntegerField()),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
     ]
