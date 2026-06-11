@@ -1,27 +1,169 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Dashboard MuscleGalaxy!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <h1>This is DashBoard Page.</h1>
-        <h1>This page is dashboard page, so has functions as portal page for several pages, and you can see some info for your working status.</h1>
-        <h1><a href="/calendar">Calendar</a></h1>
-        <h1><a href="/timer">Timer</a></h1>
-        <h1><a href="/statis">Statis</a></h1>
-        <h1><a href="/profile">Profile</a></h1>
-        <script src="" async defer></script>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>Muscle Galaxy</title>
+
+    <style>
+        body{
+            background:#121212;
+            color:white;
+            font-family:Arial,sans-serif;
+            margin:0;
+            padding:20px;
+            max-width:800px;
+            margin:auto;
+        }
+
+        .title{
+            color:#00ff99;
+            text-align:center;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#aaaaaa;
+            margin-bottom:30px;
+        }
+
+        .card{
+            background:#1f1f1f;
+            border-radius:15px;
+            padding:20px;
+            margin-bottom:20px;
+            box-shadow:0 0 10px rgba(0,255,153,0.1);
+        }
+
+        .progress-bar{
+            width:100%;
+            height:20px;
+            background:#333;
+            border-radius:10px;
+            overflow:hidden;
+        }
+
+        .progress{
+            width:75%;
+            height:100%;
+            background:#00ff99;
+            border-radius:10px;
+        }
+
+        .exercise{
+            margin-top:10px;
+            padding:15px;
+            border-radius:10px;
+            background:#2a2a2a;
+        }
+
+        .exercise strong{
+            font-size:18px;
+        }
+
+        .weight{
+            color:#00ff99;
+            font-weight:bold;
+        }
+
+        .reps{
+            color:#4da6ff;
+            font-weight:bold;
+        }
+
+        .sets{
+            color:#ffb84d;
+            font-weight:bold;
+        }
+
+        .nav{
+            display:flex;
+            justify-content:space-around;
+            margin-top:30px;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        .nav a{
+            color:white;
+            text-decoration:none;
+            background:#2a2a2a;
+            padding:12px 18px;
+            border-radius:10px;
+            transition:0.2s;
+        }
+
+        .nav a:hover{
+            background:#00ff99;
+            color:black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="title">🏋️ Muscle Galaxy</h1>
+    <p class="subtitle">Track Your Progress. Build Your Future.</p>
+
+    <div class="card">
+        <h2>Today's Workout</h2>
+        <h3>🔥 Chest Day</h3>
+
+        <p>Progress 75%</p>
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Today's Exercises</h2>
+
+        <div class="exercise">
+            <strong>Bench Press</strong><br><br>
+
+            🏋️ <span class="weight">80kg</span>
+            &nbsp;&nbsp;
+            🔁 <span class="reps">8 reps</span>
+            &nbsp;&nbsp;
+            📚 <span class="sets">3 sets</span>
+        </div>
+
+        <div class="exercise">
+            <strong>Incline Dumbbell Press</strong><br><br>
+
+            🏋️ <span class="weight">24kg</span>
+            &nbsp;&nbsp;
+            🔁 <span class="reps">10 reps</span>
+            &nbsp;&nbsp;
+            📚 <span class="sets">3 sets</span>
+        </div>
+
+        <div class="exercise">
+            <strong>Cable Fly</strong><br><br>
+
+            🏋️ <span class="weight">50kg</span>
+            &nbsp;&nbsp;
+            🔁 <span class="reps">12 reps</span>
+            &nbsp;&nbsp;
+            📚 <span class="sets">3 sets</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📊 Weekly Stats</h2>
+
+        <p>🏋️ Workout Days : <strong>4</strong></p>
+        <p>💪 Total Volume : <strong>12,500kg</strong></p>
+        <p>🎯 Goal Achievement : <strong>85%</strong></p>
+    </div>
+
+    <div class="nav">
+        <a href="/calendar">📅 Calendar</a>
+        <a href="/timer">⏱ Timer</a>
+        <a href="/statis">📊 Stats</a>
+        <a href="/profile">👤 Profile</a>
+    </div>
+
+</body>
 </html>
