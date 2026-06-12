@@ -13,6 +13,7 @@ const currentLabel = document.getElementById('timer-current');
 const notesLabel = document.getElementById('timer-notes');
 const progressLabel = document.getElementById('timer-progress');
 const recordStatus = document.getElementById('record-status');
+const manualSecondsInput = document.getElementById('manual-seconds');
 
 function getCsrfToken() {
     const input = document.querySelector('[name=csrfmiddlewaretoken]');
@@ -40,7 +41,11 @@ function renderStep() {
     currentLabel.textContent = `${item.name} ${item.set_number}/${item.sets} set`;
     notesLabel.textContent = `${item.reps}、${item.notes || 'フォームを優先します。'}`;
     progressLabel.textContent = `${currentIndex + 1} / ${timerItems.length}`;
-    timeLeft = item.seconds || 60;
+    
+    // 入力欄の値を取得して反映（なければデフォルト60秒）
+    const manualValue = manualSecondsInput ? parseInt(manualSecondsInput.value) : 60;
+    timeLeft = item.seconds || manualValue || 60;
+    
     renderTime();
 }
 
@@ -82,6 +87,17 @@ function advanceStep() {
         return;
     }
     renderStep();
+}
+
+// 秒数入力欄のイベントリスナー
+if (manualSecondsInput) {
+    manualSecondsInput.addEventListener('input', () => {
+        const newSeconds = parseInt(manualSecondsInput.value);
+        if (!isNaN(newSeconds) && timerId === null) {
+            timeLeft = newSeconds;
+            renderTime();
+        }
+    });
 }
 
 if (startBtn && resetBtn && display) {
