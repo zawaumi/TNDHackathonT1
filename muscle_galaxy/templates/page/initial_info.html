@@ -1,0 +1,57 @@
+{% extends "page/base.html" %}
+
+{% block title %}初期情報登録 | Muscle Galaxy{% endblock %}
+
+{% block content %}
+<section class="auth-shell">
+    <form class="panel auth-card stack" method="post">
+        {% csrf_token %}
+        <div>
+            <h1>初期情報登録</h1>
+            <p class="empty-state">身長・体重を登録すると、メニューと進捗が扱いやすくなります。</p>
+        </div>
+        {% if form.non_field_errors %}
+            <div class="status-text">{{ form.non_field_errors }}</div>
+        {% endif %}
+        {% if form.errors %}
+            <div class="status-text">入力内容を確認してください。</div>
+        {% endif %}
+        <div class="form-grid">
+            <div class="field">
+                <label for="{{ form.height.id_for_label }}">身長 cm</label>
+                {{ form.height }}
+                {{ form.height.errors }}
+            </div>
+            <div class="field">
+                <label for="{{ form.weight.id_for_label }}">体重 kg</label>
+                {{ form.weight }}
+                {{ form.weight.errors }}
+            </div>
+        </div>
+        <div class="field">
+            <label for="{{ form.gender.id_for_label }}">性別</label>
+            {{ form.gender }}
+            {{ form.gender.errors }}
+        </div>
+        <div class="field">
+            <label for="{{ form.birth_date.id_for_label }}">生年月日</label>
+            {{ form.birth_date }}
+            {{ form.birth_date.errors }}
+        </div>
+        <div class="field">
+            <label for="{{ form.goal.id_for_label }}">目標</label>
+            {{ form.goal }}
+            {{ form.goal.errors }}
+        </div>
+        <div class="field">
+            <label for="{{ form.bio.id_for_label }}">メモ</label>
+            {{ form.bio }}
+            {{ form.bio.errors }}
+        </div>
+        <div class="auth-actions">
+            <span></span>
+            <button class="btn primary" type="submit">保存して始める</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

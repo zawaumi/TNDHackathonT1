@@ -1,0 +1,78 @@
+{% extends "page/base.html" %}
+
+{% block title %}{{ date }} | Muscle Galaxy{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <h1>{{ date }}</h1>
+    <p>この日のメニュー、食事、記録です。</p>
+</section>
+
+<section class="grid two">
+    <article class="panel stack">
+        <h2>予定メニュー</h2>
+        <div class="detail-list">
+            <div class="detail-row">
+                <span>筋トレ</span>
+                <strong>{{ plan_day.training.title }}</strong>
+            </div>
+            <div class="detail-row">
+                <span>時間</span>
+                <strong>{{ plan_day.training.duration_minutes }}分</strong>
+            </div>
+        </div>
+        <ul class="compact-list">
+            {% for exercise in plan_day.training.exercises %}
+                <li>{{ exercise.name }} / {{ exercise.sets }}set / {{ exercise.reps }}</li>
+            {% endfor %}
+        </ul>
+    </article>
+
+    <article class="panel stack">
+        <h2>食事</h2>
+        {% if meals %}
+            <div class="detail-list">
+                {% for meal in meals %}
+                    <div class="detail-row">
+                        <span>{{ meal.get_meal_type_display }}</span>
+                        <strong>{{ meal.name|default:"食事記録" }}</strong>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="detail-list">
+                {% for meal in plan_day.meals %}
+                    <div class="detail-row">
+                        <span>{{ meal.meal_type }}</span>
+                        <strong>{{ meal.title }}</strong>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </article>
+</section>
+
+<section class="panel stack section-gap">
+    <h2>記録</h2>
+    {% if logs %}
+        <div class="day-grid">
+            {% for log in logs %}
+                <article class="day-card">
+                    <h3>{{ log.workout_name }}</h3>
+                    <div class="meta-row">
+                        <span class="pill">{{ log.body_part }}</span>
+                        <span>{{ log.weight }}kg</span>
+                        <span>{{ log.reps }}回</span>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">記録はまだありません。</div>
+    {% endif %}
+    <div class="button-row">
+        <a class="btn primary" href="/timer/">記録を始める</a>
+        <a class="btn" href="/calendar/">カレンダーへ戻る</a>
+    </div>
+</section>
+{% endblock %}

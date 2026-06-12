@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="recipe image placeholder">
+  <rect width="640" height="360" fill="#f7f8fa"/>
+  <rect x="128" y="72" width="384" height="216" rx="8" fill="#ffffff" stroke="#dfe4e8" stroke-width="2"/>
+  <circle cx="320" cy="180" r="76" fill="#e3ebe7"/>
+  <path d="M252 184c42 42 94 42 136 0" fill="none" stroke="#16835f" stroke-width="14" stroke-linecap="round"/>
+  <path d="M268 154h104" fill="none" stroke="#15171a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M292 130h56" fill="none" stroke="#15171a" stroke-width="10" stroke-linecap="round"/>
+</svg>

@@ -1,37 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Calendar MuscleGalaxy!</title>
-        
-        <style>
-            body { background-color: #f9f9f9; font-family: sans-serif; }
-            .calendar-body { 
-                background: white; 
-                padding: 20px; 
-                border-radius: 20px; 
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-                max-width: 600px;
-                margin: 20px auto;
-            }
-            .calendar-body table { width: 100%; border-collapse: collapse; }
-            .calendar-body td { 
-                padding: 20px; 
-                text-align: center; 
-                border: 1px solid #f0f0f0; 
-                border-radius: 10px;
-            }
-            .calendar-body th { padding: 10px; color: #888; }
-        </style>
-    </head>
-    <body>
-        <h1>筋トレカレンダー</h1>
-        
-        <div class="calendar-body">
-            {{ calendar_html|safe }}
-        </div>
+{% extends "page/base.html" %}
 
-        <br>
-        <a href="/calendar/meal">Meal</a> | <a href="/home">Dashboard</a>
-    </body>
-</html>
+{% block title %}カレンダー | Muscle Galaxy{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <h1>カレンダー</h1>
+    <p>日別のトレーニング記録を確認します。</p>
+</section>
+
+<section class="panel stack">
+    <div class="calendar-body">
+        {{ calendar_html|safe }}
+    </div>
+    <div class="button-row">
+        <a class="btn primary" href="/calendar/meal/">食事</a>
+        <a class="btn" href="/ai-plan/">AIプラン</a>
+    </div>
+</section>
+{% endblock %}

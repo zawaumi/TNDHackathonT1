@@ -1,45 +1,33 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Statis MuscleGalaxy!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Calendar MuscleGalaxy!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <h1>This is Statis Page.</h1>
-        <h1>This page is statis page, so you can see your statis.</h1>
-        <h1><a href="/home">Dashboard</a></h1>
-        <script src="" async defer></script>
-    </body>
-</html>
-        <script src="" async defer></script>
-    </body>
-</html>
+{% extends "page/base.html" %}
+
+{% block title %}統計 | Muscle Galaxy{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <h1>統計</h1>
+    <p>トレーニング量、体重、食事目標の変化を確認します。</p>
+</section>
+
+<section class="grid three">
+    <div class="metric">
+        <span>総ボリューム</span>
+        <strong>0 kg</strong>
+    </div>
+    <div class="metric">
+        <span>記録日数</span>
+        <strong>0日</strong>
+    </div>
+    <div class="metric">
+        <span>平均体重</span>
+        <strong>未設定</strong>
+    </div>
+</section>
+
+<section class="panel stack section-gap">
+    <h2>次の操作</h2>
+    <div class="button-row">
+        <a class="btn primary" href="/calendar/">カレンダー</a>
+        <a class="btn" href="/ai-plan/">AIプラン</a>
+    </div>
+</section>
+{% endblock %}

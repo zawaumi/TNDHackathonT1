@@ -1,38 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Timer MuscleGalaxy!</title>
-    <style>
-        /* ここにCSSを配置 */
-        .timer-circle {
-            width: 300px; height: 300px;
-            border-radius: 50%;
-            background-color: #e0e0e0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px auto;
-        }
-        .timer-controls { text-align: center; margin-top: 20px; }
-        .btn-red { background-color: red; color: white; }
-    </style>
-</head>
-<body>
-    <h1>筋トレタイマー</h1>
+{% extends "page/base.html" %}
+{% load static %}
 
-    <div class="timer-wrapper">
+{% block title %}タイマー | Muscle Galaxy{% endblock %}
+
+{% block content %}
+{{ timer_items|json_script:"timer-items-data" }}
+<section class="page-head">
+    <h1>タイマー</h1>
+    <p>{{ today_plan.training.title }} に沿って進みます。</p>
+</section>
+
+<section class="timer-layout">
+    <article class="panel stack">
+        {% csrf_token %}
         <div class="timer-circle">
-            <h1 id="timer-display">00:00</h1>
+            <h1 id="timer-display">01:00</h1>
         </div>
-        
-        <div class="timer-controls">
-            <button id="start-stop-btn">一時停止/再開</button>
-            <button id="skip-lap-btn">スキップ/ラップ</button>
-            <button id="finish-btn" class="btn-red">終了</button>
+        <div class="stack">
+            <div>
+                <span class="pill" id="timer-progress">0 / {{ timer_items|length }}</span>
+                <h2 id="timer-current">開始待ち</h2>
+                <p id="timer-notes" class="empty-state">開始すると最初のセットから進みます。</p>
+            </div>
+            <div class="button-row">
+                <button id="start-btn" class="btn primary" type="button">開始</button>
+                <button id="next-btn" class="btn" type="button">次へ</button>
+                <button id="reset-btn" class="btn" type="button">リセット</button>
+            </div>
+            <div id="record-status" class="status-text"></div>
         </div>
-    </div>
+    </article>
 
-    <script src="/static/js/timer.js"></script>
-</body>
-</html>
+    <article class="panel stack">
+        <h2>今日のメニュー</h2>
+        <div id="timer-step-list" class="timer-step-list">
+            {% for item in timer_items %}
+                <div class="timer-step" data-step-index="{{ forloop.counter0 }}">
+                    <strong>{{ item.name }}</strong>
+                    <span class="empty-state">{{ item.set_number }} / {{ item.sets }} set、{{ item.reps }}</span>
+                </div>
+            {% empty %}
+                <div class="empty-state">今日のメニューはありません。</div>
+            {% endfor %}
+        </div>
+    </article>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/timer.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends "page/base.html" %}
+{% load static %}
+
+{% block title %}AIプラン | Muscle Galaxy{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <h1>AIプラン</h1>
+    <p>身体データ、目標、要望から1ヶ月の筋トレと食事を生成します。</p>
+</section>
+
+<section class="split-layout">
+    <div class="stack">
+        <section class="panel stack">
+            <h2>生成</h2>
+            <form id="plan-form" class="stack">
+                {% csrf_token %}
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="goal">目標</label>
+                        <select id="goal" name="goal">
+                            <option value="muscle_gain">筋肥大</option>
+                            <option value="fat_loss">減量</option>
+                            <option value="maintenance">維持</option>
+                            <option value="performance">競技力向上</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="experience_level">経験</label>
+                        <select id="experience_level" name="experience_level">
+                            <option value="beginner">初心者</option>
+                            <option value="intermediate">中級者</option>
+                            <option value="advanced">上級者</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="height_cm">身長 cm</label>
+                        <input id="height_cm" name="height_cm" type="number" min="80" max="250" value="170">
+                    </div>
+                    <div class="field">
+                        <label for="weight_kg">体重 kg</label>
+                        <input id="weight_kg" name="weight_kg" type="number" min="25" max="250" value="70">
+                    </div>
+                    <div class="field">
+                        <label for="age">年齢</label>
+                        <input id="age" name="age" type="number" min="13" max="100" value="30">
+                    </div>
+                    <div class="field">
+                        <label for="gender">性別</label>
+                        <select id="gender" name="gender">
+                            <option value="other">その他</option>
+                            <option value="male">男性</option>
+                            <option value="female">女性</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="training_days_per_week">週のトレーニング日数</label>
+                        <input id="training_days_per_week" name="training_days_per_week" type="number" min="1" max="7" value="4">
+                    </div>
+                    <div class="field">
+                        <label for="start_date">開始日</label>
+                        <input id="start_date" name="start_date" type="date">
+                    </div>
+                    <div class="field full">
+                        <label for="goal_detail">目標詳細</label>
+                        <input id="goal_detail" name="goal_detail" type="text" placeholder="ベンチプレスを伸ばしたい、3kg落としたいなど">
+                    </div>
+                    <div class="field full">
+                        <label for="food_preferences">食事の好み</label>
+                        <input id="food_preferences" name="food_preferences" type="text" placeholder="和食中心、魚多め、調理時間短めなど">
+                    </div>
+                    <div class="field full">
+                        <label for="allergies">避けたい食品</label>
+                        <input id="allergies" name="allergies" type="text" placeholder="卵、乳製品など">
+                    </div>
+                    <div class="field full">
+                        <label for="request_text">AIへのリクエスト</label>
+                        <textarea id="request_text" name="request_text" placeholder="忙しい日は短時間にしたい、外食が多いなど"></textarea>
+                    </div>
+                </div>
+                <label class="check-row">
+                    <input id="generate_images" name="generate_images" type="checkbox">
+                    <span>レシピ画像も生成</span>
+                </label>
+                <div class="button-row">
+                    <button id="generate-btn" class="btn primary" type="submit">生成</button>
+                    <a class="btn" href="/api/docs/">Swagger</a>
+                </div>
+                <div id="plan-status" class="status-text"></div>
+            </form>
+        </section>
+
+        <section class="panel stack">
+            <h2>保存済み</h2>
+            <div id="plan-list" class="plan-list"></div>
+        </section>
+    </div>
+
+    <section class="panel plan-detail">
+        <div>
+            <h2 id="detail-title">プラン未選択</h2>
+            <p id="detail-summary" class="empty-state">生成するとここに内容が表示されます。</p>
+        </div>
+        <div id="detail-metrics" class="grid four"></div>
+        <div id="weekly-focus" class="grid two"></div>
+        <div class="subsection stack">
+            <h3>調整</h3>
+            <form id="adjust-form" class="stack">
+                <div class="field">
+                    <label for="adjust_text">リクエスト</label>
+                    <textarea id="adjust_text" name="request_text" placeholder="脚の日を減らす、朝食を和食にするなど"></textarea>
+                </div>
+                <label class="check-row">
+                    <input id="adjust_generate_images" name="generate_images" type="checkbox">
+                    <span>画像も更新</span>
+                </label>
+                <div class="button-row">
+                    <button id="adjust-btn" class="btn primary" type="submit" disabled>調整</button>
+                    <button id="delete-btn" class="btn danger" type="button" disabled>削除</button>
+                </div>
+            </form>
+        </div>
+        <div id="day-grid" class="day-grid"></div>
+    </section>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/ai_plan.js' %}"></script>
+{% endblock %}

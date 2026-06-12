@@ -1,27 +1,92 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Dashboard MuscleGalaxy!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <h1>This is DashBoard Page.</h1>
-        <h1>This page is dashboard page, so has functions as portal page for several pages, and you can see some info for your working status.</h1>
-        <h1><a href="/calendar">Calendar</a></h1>
-        <h1><a href="/timer">Timer</a></h1>
-        <h1><a href="/statis">Statis</a></h1>
-        <h1><a href="/profile">Profile</a></h1>
-        <script src="" async defer></script>
-    </body>
-</html>
+{% extends "page/base.html" %}
+
+{% block title %}ホーム | Muscle Galaxy{% endblock %}
+
+{% block content %}
+<section class="dashboard-shell">
+    <div class="page-head">
+        <h1>ダッシュボード</h1>
+        <p>{{ today }} のメニューと記録状況です。</p>
+    </div>
+
+    <section class="schedule-strip" aria-label="直近の筋トレメニュー">
+        {% for day in upcoming_days %}
+            <article class="schedule-day">
+                <span class="pill">{{ day.date }}</span>
+                <strong>{{ day.training.title }}</strong>
+                <span class="empty-state">{{ day.training.duration_minutes }}分 / {{ day.training.type }}</span>
+            </article>
+        {% endfor %}
+    </section>
+
+    <section class="speech-panel">
+        <div class="speech-text">
+            <strong>今日の筋トレ・食事を記録しよう！</strong>
+            <span class="empty-state">タイマーを始めると、完了時に筋トレ記録が自動で作成されます。</span>
+        </div>
+        <div class="button-row">
+            <a class="btn primary" href="/timer/">筋トレを始める</a>
+            <a class="btn" href="/calendar/meal/">食事を記録</a>
+        </div>
+    </section>
+
+    <section class="dashboard-bottom">
+        <article class="panel stack">
+            <h2>PROGRESS</h2>
+            <div class="progress-list">
+                <div class="progress-row">
+                    <span>今週のトレーニング</span>
+                    <strong>{{ progress.week_hours }}h</strong>
+                </div>
+                <div class="progress-row">
+                    <span>先週比</span>
+                    <strong>{% if progress.week_delta >= 0 %}+{% endif %}{{ progress.week_delta }}h</strong>
+                </div>
+                <div class="progress-row">
+                    <span>体重の変化</span>
+                    <strong>{% if progress.weight_delta is None %}未記録{% else %}{% if progress.weight_delta >= 0 %}+{% endif %}{{ progress.weight_delta }}kg{% endif %}</strong>
+                </div>
+                <div class="progress-row">
+                    <span>累計記録</span>
+                    <strong>{{ progress.completed_workouts }}件</strong>
+                </div>
+            </div>
+        </article>
+
+        <article class="panel stack">
+            <h2>今日の詳細</h2>
+            <div class="workout-detail-grid">
+                <div class="stack">
+                    <h3>筋トレ</h3>
+                    <div class="detail-list">
+                        <div class="detail-row">
+                            <span>メニュー</span>
+                            <strong>{{ today_plan.training.title }}</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>時間</span>
+                            <strong>{{ today_plan.training.duration_minutes }}分</strong>
+                        </div>
+                    </div>
+                    <ul class="compact-list">
+                        {% for exercise in today_plan.training.exercises %}
+                            <li>{{ exercise.name }} / {{ exercise.sets }}set / {{ exercise.reps }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="stack">
+                    <h3>食事</h3>
+                    <div class="detail-list">
+                        {% for meal in today_plan.meals %}
+                            <div class="detail-row">
+                                <span>{{ meal.meal_type }}</span>
+                                <strong>{{ meal.title }}</strong>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+</section>
+{% endblock %}
