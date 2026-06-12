@@ -1,39 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Calendar</title>
-<style>
-body{
-    background:#121212;
-    color:white;
-    font-family:Arial;
-    padding:20px;
-}
-.card{
-    background:#1f1f1f;
-    padding:20px;
-    border-radius:15px;
-}
-</style>
-</head>
-<body>
+{% extends "page/base.html" %}
 
-<h1>📅 Training Calendar</h1>
+{% block title %}カレンダー | Muscle Galaxy{% endblock %}
 
-<div class="card">
-<h2>June 2026</h2>
+{% block content %}
+<section class="page-head">
+    <h1>カレンダー</h1>
+    <p>日別のトレーニング記録を確認します。</p>
+</section>
 
-<p>💪 10</p>
-<p>💪 12</p>
-<p>💪 15</p>
-<p>💪 18</p>
-
-<p>
-💪 = Workout Completed
-</p>
-</div>
-
-<a href="/home/">← Dashboard</a>
-
-</body>
-</html>
+<section class="panel stack">
+    <div class="calendar-body">
+        {{ calendar_html|safe }}
+    </div>
+    <div class="button-row">
+        <a class="btn primary" href="/calendar/meal/">食事</a>
+        <a class="btn" href="/ai-plan/">AIプラン</a>
+    </div>
+</section>
+{% endblock %}

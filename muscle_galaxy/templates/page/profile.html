@@ -1,41 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-body{
-    background:#121212;
-    color:white;
-    font-family:Arial;
-    padding:20px;
-}
+{% extends "page/base.html" %}
 
-.card{
-    background:#1f1f1f;
-    padding:20px;
-    border-radius:15px;
-}
-</style>
-</head>
+{% block title %}プロフィール | Muscle Galaxy{% endblock %}
 
-<body>
+{% block content %}
+<section class="page-head">
+    <h1>プロフィール</h1>
+    <p>身長、体重、目標などAIプランの入力元になる情報を管理します。</p>
+</section>
 
-<h1>👤 Profile</h1>
+<section class="grid three">
+    <div class="metric">
+        <span>身長</span>
+        <strong>未設定</strong>
+    </div>
+    <div class="metric">
+        <span>体重</span>
+        <strong>未設定</strong>
+    </div>
+    <div class="metric">
+        <span>目標</span>
+        <strong>未設定</strong>
+    </div>
+</section>
 
-<div class="card">
-
-<h2>Hiro</h2>
-
-<p>Height : 175 cm</p>
-
-<p>Weight : 72 kg</p>
-
-<p>Body Fat : 12%</p>
-
-<p>Goal Weight : 80 kg</p>
-
-<p>Experience : 2 years</p>
-
-</div>
-
-</body>
-</html>
+<section class="panel stack section-gap">
+    <h2>操作</h2>
+    <div class="button-row">
+        <a class="btn primary" href="/edit/">編集</a>
+        <a class="btn" href="/ai-plan/">AIプラン</a>
+    </div>
+</section>
+{% endblock %}

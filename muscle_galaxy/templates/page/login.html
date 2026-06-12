@@ -1,67 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Login</title>
+{% extends "page/base.html" %}
 
-<style>
-body{
-    background:#121212;
-    color:white;
-    font-family:Arial;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
+{% block title %}ログイン | Muscle Galaxy{% endblock %}
 
-.card{
-    background:#1f1f1f;
-    padding:40px;
-    border-radius:15px;
-    width:350px;
-}
-
-h1{
-    text-align:center;
-    color:#00ff99;
-}
-
-input{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    margin-bottom:20px;
-    border:none;
-    border-radius:8px;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    background:#00ff99;
-    border:none;
-    border-radius:8px;
-    font-weight:bold;
-}
-</style>
-</head>
-
-<body>
-
-<div class="card">
-
-<h1>🔐 Login</h1>
-
-<input type="email" placeholder="Email">
-
-<input type="password" placeholder="Password">
-
-<button onclick="location.href='/home/'">
-Login
-</button>
-
-</div>
-
-</body>
-</html>
+{% block content %}
+<section class="auth-shell">
+    <form class="panel auth-card stack" method="post">
+        {% csrf_token %}
+        <div>
+            <h1>ログイン</h1>
+            <p class="empty-state">アカウントでダッシュボードへ進みます。</p>
+        </div>
+        {% if form.non_field_errors %}
+            <div class="status-text">{{ form.non_field_errors }}</div>
+        {% endif %}
+        <div class="field">
+            <label for="{{ form.username.id_for_label }}">ユーザー名</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+        <div class="field">
+            <label for="{{ form.password.id_for_label }}">パスワード</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <div class="auth-actions">
+            <a class="text-link" href="/register/">アカウントがない方はこちら</a>
+            <button class="btn primary" type="submit">ログイン</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

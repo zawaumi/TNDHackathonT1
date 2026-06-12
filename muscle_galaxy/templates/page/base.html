@@ -1,0 +1,76 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Muscle Galaxy{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body class="{% if not user.is_authenticated %}is-public{% endif %}">
+    {% if user.is_authenticated %}
+        <aside class="side-rail" aria-label="メインナビゲーション">
+            <div class="side-tab">MENU</div>
+            <div class="side-panel">
+                <a class="side-brand" href="/home/">Muscle Galaxy</a>
+                <nav class="side-nav">
+                    <a href="/home/">ホーム</a>
+                    <a href="/ai-plan/">AIプラン</a>
+                    <a href="/calendar/">カレンダー</a>
+                    <a href="/timer/">タイマー</a>
+                    <a href="/calendar/meal/">食事</a>
+                    <a href="/statis/">統計</a>
+                    <a href="/profile/">プロフィール</a>
+                </nav>
+            </div>
+        </aside>
+        <header class="top-bar">
+            <a class="brand compact" href="/home/">Muscle Galaxy</a>
+            <div class="top-actions">
+                <button class="icon-button" type="button" data-panel-toggle="notifications" aria-label="通知">
+                    <span>!</span>
+                </button>
+                <button class="account-button" type="button" data-panel-toggle="account" aria-label="アカウント">
+                    {{ user.username|first|upper }}
+                </button>
+            </div>
+        </header>
+        <section id="notifications-panel" class="slide-menu" aria-label="通知">
+            <div class="slide-menu-head">
+                <h2>通知</h2>
+                <button class="icon-button small" type="button" data-panel-close>×</button>
+            </div>
+            <div class="stack">
+                {% for item in notifications %}
+                    <article class="notice-item">
+                        <strong>{{ item.title }}</strong>
+                        <span>{{ item.body }}</span>
+                    </article>
+                {% empty %}
+                    <div class="empty-state">通知はありません。</div>
+                {% endfor %}
+            </div>
+        </section>
+        <section id="account-panel" class="slide-menu" aria-label="アカウントメニュー">
+            <div class="slide-menu-head">
+                <h2>{{ user.username }}</h2>
+                <button class="icon-button small" type="button" data-panel-close>×</button>
+            </div>
+            <div class="stack">
+                <a class="menu-row" href="/profile/">プロフィール</a>
+                <a class="menu-row" href="/edit/">設定</a>
+                <a class="menu-row" href="/api/docs/">API Docs</a>
+                <form method="post" action="/logout/">
+                    {% csrf_token %}
+                    <button class="menu-row danger" type="submit">ログアウト</button>
+                </form>
+            </div>
+        </section>
+    {% endif %}
+    <main class="app-main">
+        {% block content %}{% endblock %}
+    </main>
+    <script src="{% static 'js/app_shell.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

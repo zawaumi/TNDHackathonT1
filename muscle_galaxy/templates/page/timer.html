@@ -1,55 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Workout Timer</title>
+{% extends "page/base.html" %}
+{% load static %}
 
-<style>
-body{
-    background:#121212;
-    color:white;
-    text-align:center;
-    padding-top:100px;
-    font-family:Arial;
-}
+{% block title %}タイマー | Muscle Galaxy{% endblock %}
 
-.timer{
-    font-size:80px;
-    color:#00ff99;
-}
+{% block content %}
+{{ timer_items|json_script:"timer-items-data" }}
+<section class="page-head">
+    <h1>タイマー</h1>
+    <p>{{ today_plan.training.title }} に沿って進みます。</p>
+</section>
 
-button{
-    padding:15px 30px;
-    margin:10px;
-}
-</style>
-</head>
+<section class="timer-layout">
+    <article class="panel stack">
+        {% csrf_token %}
+        <div class="timer-circle">
+            <h1 id="timer-display">01:00</h1>
+        </div>
+        <div class="stack">
+            <div>
+                <span class="pill" id="timer-progress">0 / {{ timer_items|length }}</span>
+                <h2 id="timer-current">開始待ち</h2>
+                <p id="timer-notes" class="empty-state">開始すると最初のセットから進みます。</p>
+            </div>
+            <div class="button-row">
+                <button id="start-btn" class="btn primary" type="button">開始</button>
+                <button id="next-btn" class="btn" type="button">次へ</button>
+                <button id="reset-btn" class="btn" type="button">リセット</button>
+            </div>
+            <div id="record-status" class="status-text"></div>
+        </div>
+    </article>
 
-<body>
+    <article class="panel stack">
+        <h2>今日のメニュー</h2>
+        <div id="timer-step-list" class="timer-step-list">
+            {% for item in timer_items %}
+                <div class="timer-step" data-step-index="{{ forloop.counter0 }}">
+                    <strong>{{ item.name }}</strong>
+                    <span class="empty-state">{{ item.set_number }} / {{ item.sets }} set、{{ item.reps }}</span>
+                </div>
+            {% empty %}
+                <div class="empty-state">今日のメニューはありません。</div>
+            {% endfor %}
+        </div>
+    </article>
+</section>
+{% endblock %}
 
-<h1>⏱ Workout Timer</h1>
-
-<div class="timer" id="timer">
-60
-</div>
-
-<button onclick="startTimer()">Start</button>
-
-<script>
-let time = 60;
-
-function startTimer(){
-    const interval = setInterval(()=>{
-        time--;
-
-        document.getElementById("timer").innerHTML=time;
-
-        if(time<=0){
-            clearInterval(interval);
-        }
-
-    },1000);
-}
-</script>
-
-</body>
-</html>
+{% block scripts %}
+<script src="{% static 'js/timer.js' %}"></script>
+{% endblock %}

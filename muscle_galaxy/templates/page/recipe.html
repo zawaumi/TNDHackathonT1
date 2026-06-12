@@ -1,46 +1,19 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Recipe MuscleGalaxy!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Calendar MuscleGalaxy!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <h1>This is Recipe Page.</h1>
-        <h1>This page is recipe page, so you can see the recipe for your meal today.</h1>
-        <h1><a href="/calendar/meal">Meal</a></h1>
-        <script src="" async defer></script>
-        <script src="" async defer></script>
-    </body>
-</html>
-        <script src="" async defer></script>
-    </body>
-</html>
+{% extends "page/base.html" %}
+
+{% block title %}レシピ | Muscle Galaxy{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <h1>レシピ</h1>
+    <p>AIプランで生成した食事レシピと画像を扱います。</p>
+</section>
+
+<section class="panel stack">
+    <h2>レシピ連携</h2>
+    <div class="empty-state">AIプランを作成すると、日別のレシピと画像プロンプトを確認できます。</div>
+    <div class="button-row">
+        <a class="btn primary" href="/ai-plan/">AIプランを開く</a>
+        <a class="btn" href="/calendar/meal/">食事へ戻る</a>
+    </div>
+</section>
+{% endblock %}

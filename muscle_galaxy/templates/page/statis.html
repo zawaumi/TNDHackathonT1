@@ -1,48 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-body{
-    background:#121212;
-    color:white;
-    font-family:Arial;
-    padding:20px;
-}
+{% extends "page/base.html" %}
 
-.card{
-    background:#1f1f1f;
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:20px;
-}
-</style>
-</head>
+{% block title %}統計 | Muscle Galaxy{% endblock %}
 
-<body>
+{% block content %}
+<section class="page-head">
+    <h1>統計</h1>
+    <p>トレーニング量、体重、食事目標の変化を確認します。</p>
+</section>
 
-<h1>📊 Statistics</h1>
+<section class="grid three">
+    <div class="metric">
+        <span>総ボリューム</span>
+        <strong>0 kg</strong>
+    </div>
+    <div class="metric">
+        <span>記録日数</span>
+        <strong>0日</strong>
+    </div>
+    <div class="metric">
+        <span>平均体重</span>
+        <strong>未設定</strong>
+    </div>
+</section>
 
-<div class="card">
-<h2>Bench Press Progress</h2>
-
-<p>January : 60kg</p>
-<p>February : 65kg</p>
-<p>March : 70kg</p>
-<p>April : 75kg</p>
-<p>May : 80kg</p>
-</div>
-
-<div class="card">
-<h2>Total Workouts</h2>
-
-<h1>48</h1>
-</div>
-
-<div class="card">
-<h2>Total Volume</h2>
-
-<h1>12500kg</h1>
-</div>
-
-</body>
-</html>
+<section class="panel stack section-gap">
+    <h2>次の操作</h2>
+    <div class="button-row">
+        <a class="btn primary" href="/calendar/">カレンダー</a>
+        <a class="btn" href="/ai-plan/">AIプラン</a>
+    </div>
+</section>
+{% endblock %}
