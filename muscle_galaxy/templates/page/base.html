@@ -25,7 +25,14 @@
             </div>
         </aside>
         <header class="top-bar">
-            <a class="brand compact" href="/home/">Muscle Galaxy</a>
+            <div class="top-bar-left">
+                <button class="mobile-nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" data-mobile-nav-toggle>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+                    </svg>
+                </button>
+                <a class="brand compact" href="/home/">Muscle Galaxy</a>
+            </div>
             <div class="top-actions">
                 <button class="icon-button" type="button" data-panel-toggle="notifications" aria-label="通知">
                     <span>!</span>
@@ -67,6 +74,7 @@
             </div>
         </section>
     {% endif %}
+    <div class="mobile-nav-backdrop" data-mobile-nav-backdrop></div>
     <main class="app-main">
         {% block content %}{% endblock %}
     </main>
