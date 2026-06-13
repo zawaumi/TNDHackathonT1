@@ -98,6 +98,20 @@ textarea {
     padding: 92px 0 56px;
 }
 
+.top-page-link {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 12px auto;
+    color: #69d8ff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.top-page-link:hover {
+    color: #2ec7f3;
+}
+
 .is-public .app-main {
     padding-top: 32px;
 }
@@ -111,13 +125,14 @@ textarea {
     align-items: center;
     height: 64px;
     padding: 0 22px 0 76px;
-    background: rgba(255, 255, 255, 0.96);
-    border-bottom: 1px solid var(--line);
+    background: #0f1115;
+    border-bottom: 1px solid #2a2f38;
     backdrop-filter: blur(10px);
 }
 
 .brand.compact {
     font-size: 17px;
+    color: #69d8ff;
 }
 
 .top-actions {
@@ -154,7 +169,7 @@ textarea {
     position: fixed;
     inset: 0 auto 0 0;
     z-index: 40;
-    width: 292px;
+    width: 250px;
     pointer-events: none;
 }
 
@@ -162,8 +177,8 @@ textarea {
     position: absolute;
     top: 88px;
     left: 0;
-    width: 48px;
-    height: 132px;
+    width: 42px;
+    height: 112px;
     display: grid;
     place-items: center;
     writing-mode: vertical-rl;
@@ -178,12 +193,12 @@ textarea {
 
 .side-panel {
     height: 100%;
-    width: 244px;
-    padding: 26px 18px;
+    width: 208px;
+    padding: 20px 12px;
     background: #fff;
     border-right: 1px solid var(--line);
     box-shadow: 12px 0 30px rgba(21, 23, 26, 0.08);
-    transform: translateX(-244px);
+    transform: translateX(-208px);
     transition: transform 180ms ease;
     pointer-events: auto;
 }
@@ -307,6 +322,28 @@ textarea {
     font-size: 18px;
 }
 
+.card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.card-header-row h2 {
+    margin: 0;
+}
+
+.card-link {
+    color: #69d8ff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.card-link:hover {
+    color: #2ec7f3;
+}
+
 .grid {
     display: grid;
     gap: 16px;
@@ -336,6 +373,12 @@ textarea {
 .dashboard-shell {
     display: grid;
     gap: 18px;
+}
+
+.schedule-top-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
 }
 
 .schedule-strip {

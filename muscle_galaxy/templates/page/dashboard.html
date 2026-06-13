@@ -9,6 +9,9 @@
         <p>{{ today }} のメニューと記録状況です。</p>
     </div>
 
+    <div class="schedule-top-row">
+        <a class="card-link" href="/calendar/">カレンダーを見る→</a>
+    </div>
     <section class="schedule-strip" aria-label="直近の筋トレメニュー">
         {% for day in upcoming_days %}
             <article class="schedule-day">
@@ -32,7 +35,10 @@
 
     <section class="dashboard-bottom">
         <article class="panel stack">
-            <h2>PROGRESS</h2>
+            <div class="card-header-row">
+                <h2>PROGRESS</h2>
+                <a class="card-link" href="/statis/">進捗を見る→</a>
+            </div>
             <div class="progress-list">
                 <div class="progress-row">
                     <span>今週のトレーニング</span>
